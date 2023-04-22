@@ -1,0 +1,9 @@
+{:paths ["src/main" "resources"]
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}}
+
+ :aliases
+ {:dev {:extra-paths ["src/test" "src/dev"]
+        :extra-deps {com.clojure-goes-fast/clj-java-decompiler {:mvn/version "0.3.4"}
+                     criterium/criterium {:mvn/version "0.4.6"}}}
+
+  :test {:extra-paths ["src/test"]}}}
