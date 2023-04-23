@@ -1,9 +1,28 @@
 {:paths ["src/main" "resources"]
- :deps {org.clojure/clojure {:mvn/version "1.11.1"}}
+ :deps {org.clojure/clojure        {:mvn/version "1.11.1"}
+
+        ;; ring essential functions for handling parameters, cookies and more
+        ring/ring-core             {:mvn/version "1.9.6"}
+        ;; a Ring adapter that uses the Jetty webserver
+        ring/ring-jetty-adapter    {:mvn/version "1.9.6"}
+        ;; handling http statuses
+        metosin/ring-http-response {:mvn/version "0.9.3"}
+        ;; routing core
+        metosin/reitit-core        {:mvn/version "0.6.0"}
+        ;; reitit ring router
+        metosin/reitit-ring        {:mvn/version "0.6.0"}
+        ;; common reitit middleware (params, exceptions, negotiation)
+        metosin/reitit-middleware  {:mvn/version "0.6.0"}
+        ;; reitit malli coercion
+        metosin/reitit-malli       {:mvn/version "0.6.0"}
+        ;; Data-driven Schemas for Clojure/Script
+        metosin/malli              {:mvn/version "0.11.0"}
+        ;; http format negotiation
+        metosin/muuntaja           {:mvn/version "0.6.8"}}
 
  :aliases
- {:dev {:extra-paths ["src/test" "src/dev"]
+ {:dev {:extra-paths ["src/dev"]
         :extra-deps {com.clojure-goes-fast/clj-java-decompiler {:mvn/version "0.3.4"}
-                     criterium/criterium {:mvn/version "0.4.6"}}}
+                     criterium/criterium                       {:mvn/version "0.4.6"}}}
 
   :test {:extra-paths ["src/test"]}}}
