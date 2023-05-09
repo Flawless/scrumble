@@ -8,14 +8,17 @@
    [reitit.ring.middleware.parameters :as parameters]
    [ring.util.http-response :as http]
    [scrumble.schemas :as schemas]
-   [scrumble.scramble :as scramble]))
+   [scrumble.scramble :as scramble]
+   [scrumble.ui.index :as ui.index]))
 
 (defn scramble [request]
   (let [{:keys [source-string sub-string]} (-> request :parameters :form)]
     {:scramble? (scramble/scramble? source-string sub-string)}))
 
 (defn routes []
-  [["/api" {:name :api}
+  [["/" {:name :ui
+         :handler (fn [_] (http/ok ui.index/page))}]
+   ["/api" {:name :api}
     ["/ping" {:name :api/ping
               :get (fn [_] (http/ok "pong"))}]
     ["/scramble" {:name :api/scramble
@@ -27,7 +30,8 @@
   (ring/ring-handler
    (ring/router
     (routes)
-    {:data {:muuntaja m/instance
+    {:reitit.middleware/transform reitit.ring.middleware.dev/print-request-diffs
+     :data {:muuntaja m/instance
             :coercion reitit.coercion.malli/coercion
             :middleware [muuntaja/format-middleware
                          parameters/parameters-middleware

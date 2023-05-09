@@ -17,12 +17,28 @@
         metosin/reitit-malli       {:mvn/version "0.6.0"}
         ;; Data-driven Schemas for Clojure/Script
         metosin/malli              {:mvn/version "0.11.0"}
+        ;; transformation tools
+        meander/epsilon            {:mvn/version "0.0.650"}
         ;; http format negotiation
-        metosin/muuntaja           {:mvn/version "0.6.8"}}
+        metosin/muuntaja           {:mvn/version "0.6.8"}
+        ;; CLJS compiling
+        thheller/shadow-cljs       {:mvn/version "2.22.9"}
+        ;; CLJS react interface
+        reagent/reagent            {:mvn/version "1.2.0"}
+        ;; Representing html in clojure
+        hiccup/hiccup              {:mvn/version "1.0.5"}}
 
  :aliases
  {:dev {:extra-paths ["src/dev"]
         :extra-deps {com.clojure-goes-fast/clj-java-decompiler {:mvn/version "0.3.4"}
-                     criterium/criterium                       {:mvn/version "0.4.6"}}}
+                     criterium/criterium                       {:mvn/version "0.4.6"}}
+        :jvm-opts ["-Dshadow-build=main"]}
 
-  :test {:extra-paths ["src/test"]}}}
+  :test {:extra-paths ["src/test"]}
+
+  :cljs {:extra-deps {org.clojure/clojurescript {:mvn/version "1.11.60"}
+
+                      ;; clojure react interface
+                      reagent/reagent {:mvn/version "1.2.0"}
+                      ;; http client
+                      cljs-http/cljs-http {:mvn/version "0.1.46"}}}}}
