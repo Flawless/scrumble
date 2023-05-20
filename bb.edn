@@ -1,0 +1,5 @@
+{:paths ["."]
+ :tasks {tmux tasks/tmux
+         backend (shell "clj -M:env/dev:env/cider:cider/nrepl")
+         frontend (shell "shadow-cljs watch main")
+         clear (shell "rm -rf resources/public/js")}}
