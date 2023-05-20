@@ -34,7 +34,6 @@
   (ring/router
     (routes)
     {:conflicts (constantly nil)
-     :reitit.middleware/transform reitit.ring.middleware.dev/print-request-diffs
      :data {:muuntaja m/instance
             :coercion reitit.coercion.malli/coercion
             :middleware [muuntaja/format-middleware
