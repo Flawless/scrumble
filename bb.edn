@@ -1,5 +1,11 @@
 {:paths ["."]
- :tasks {tmux tasks/tmux
-         backend (shell "clj -M:env/dev:env/cider:cider/nrepl")
-         frontend (shell "shadow-cljs watch main")
-         clear (shell "rm -rf resources/public/js")}}
+ :tasks {tmux {:doc "All in one command - run all necessery services to work with project."
+               :task tasks/tmux}
+         backend {:doc "Run backend service"
+                  :task (shell "clj -M:env/dev:env/cider:cider/nrepl")}
+         frontend {:doc "Run frontend service"
+                   :task (shell "shadow-cljs watch main")}
+         test {:doc "Run tests"
+               :task (shell "clj -M:test -d src/test")}
+         clear {:doc "Clear project directories"
+                :task (shell "rm -rf resources/public/js")}}}
